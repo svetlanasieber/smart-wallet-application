@@ -45,7 +45,6 @@ public class IndexController {
         return modelAndView;
     }
 
-    // Autowiring of HttpSession session = създава нова сесия за тази заявка (ако няма вече сесия)
     @PostMapping("/login")
     public String login(@Valid LoginRequest loginRequest, BindingResult bindingResult, HttpSession session) {
 
