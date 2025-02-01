@@ -107,10 +107,7 @@ public class WalletService {
                     "Invalid criteria for transfer");
         }
 
-        // Money Transfer
-        // Ivan -> Gosho | 20 EUR
-        // Ivan -20.00 EUR
-        // Gosho +20.00 EUR
+
 
         Transaction withdrawal = charge(sender, senderWallet.getId(), transferRequest.getAmount(), transferDescription);
         if (withdrawal.getStatus() == TransactionStatus.FAILED) {
