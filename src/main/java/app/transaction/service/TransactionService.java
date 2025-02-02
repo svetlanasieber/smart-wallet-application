@@ -24,7 +24,7 @@ public class TransactionService {
 
     @Autowired
     public TransactionService(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
+        this.transactionRepository = transactionRepository; 
     }
 
     public Transaction createNewTransaction(User owner, String sender, String receiver, BigDecimal transactionAmount, BigDecimal balanceLeft, Currency currency, TransactionType type, TransactionStatus status, String transactionDescription, String failureReason) {
