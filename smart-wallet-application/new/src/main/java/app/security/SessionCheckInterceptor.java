@@ -28,21 +28,15 @@ public class SessionCheckInterceptor implements HandlerInterceptor {
         this.userService = userService;
     }
 
-    // Този метод ще се изпълни преди всяка заявка
-    // HttpServletRequest request - заявката, която се праща към нашето приложение
-    // HttpServletResponse response - отговор, който връщаме
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        // Endpoint
         String endpoint = request.getServletPath();
         if (UNAUTHENTICATED_ENDPOINTS.contains(endpoint)) {
-            // Ако иска да достъпи ендпойнт, за който не ни трябва сесия, пускаме заявката напред да се обработи
+
             return true;
         }
 
-        // request.getSession() - вземам сесията, ако няма се създава нова!!!
-        // request.getSession(false) - вземам сесията, ако има, ако пък няма се връща null!!!
         HttpSession currentUserSession = request.getSession(false);
         if (currentUserSession == null) {
             response.sendRedirect("/login");
@@ -59,7 +53,7 @@ public class SessionCheckInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        // НАЧИН 1:
+     
         if (ADMIN_ENDPOINTS.contains(endpoint) && user.getRole() != UserRole.ADMIN) {
 
             response.setStatus(HttpStatus.FORBIDDEN.value());
@@ -67,14 +61,6 @@ public class SessionCheckInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        // НАЧИН 2:
-//        HandlerMethod handlerMethod = (HandlerMethod) handler;
-//        if (handlerMethod.hasMethodAnnotation(RequireAdminRole.class) && user.getRole() != UserRole.ADMIN) {
-//
-//            response.setStatus(HttpStatus.FORBIDDEN.value());
-//            response.getWriter().write("Access denied, you don't have the necessary permissions!");
-//            return false;
-//        }
 
         return true;
     }
