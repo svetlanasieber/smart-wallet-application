@@ -39,7 +39,7 @@ public class UserController {
         return modelAndView;
     }
 
-    // Endpoint:  '/users/{placeholder}/profile'- unique (just single in my app)
+  
     @GetMapping("/{id}/profile")
     public ModelAndView getProfileMenu(@PathVariable UUID id) {
 
