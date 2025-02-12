@@ -24,9 +24,9 @@ public class UserInit implements CommandLineRunner {
         }
 
         RegisterRequest registerRequest = RegisterRequest.builder()
-                .username("Vik123")
-                .password("123123")
-                .country(Country.BULGARIA)
+                .username("test")
+                .password("23232323")
+                .country(Country.SWITZERLAND)
                 .build();
 
         userService.register(registerRequest);
